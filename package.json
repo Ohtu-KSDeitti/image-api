@@ -1,7 +1,7 @@
 {
-  "name": "backend_ksd",
+  "name": "image-api",
   "version": "1.0.0",
-  "description": "backend for KSDeitti",
+  "description": "Image microservice",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ohtu-KSDeitti/backend_ksd.git"
+    "url": "git+https://github.com/Ohtu-KSDeitti/image-api.git"
   },
   "author": "Ohtu-KSDeitti",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Ohtu-KSDeitti/backend_ksd/issues"
+    "url": "https://github.com/Ohtu-KSDeitti/image-api/issues"
   },
-  "homepage": "https://github.com/Ohtu-KSDeitti/backend_ksd#readme",
+  "homepage": "https://github.com/Ohtu-KSDeitti/image-api#readme",
   "devDependencies": {
     "apollo-server-testing": "^2.24.1",
     "cross-env": "^7.0.3",
