@@ -45,7 +45,7 @@ jobs:
           status=`aws deploy get-deployment \
             --deployment-id "$( aws deploy list-deployments \
               --application-name user-api-deployer \
-              --deployment-group-name KSD \
+              --deployment-group-name image-api-deployment-group \
               --query 'deployments' \
               --max-items 1 \
             | grep -oP '"\K[^"\047]+(?=["\047])')" \
