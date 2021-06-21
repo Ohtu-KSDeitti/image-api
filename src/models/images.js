@@ -1,5 +1,5 @@
 const { TABLENAME, docClient } = require('../config/dynamodb_config')
-const { deleteFromS3 } = require('../utils/s3')
+const { deleteFromS3, getPresignedPostS3 } = require('../utils/s3')
 
 const getUserImages = (id, client = docClient) => {
   const params = {
@@ -53,11 +53,19 @@ const updateUserImages = (id, userImages, client = docClient) => {
 }
 
 const updateProfilePic = async (id, profilePic) => {
-  const userImages = await getUserImages(id)
+  /*
+const userImages = await getUserImages(id)
 
   const updatedUserImage = { ...userImages, profilePic }
 
-  return await updateUserImages(id, updatedUserImage)
+  const result = await updateUserImages(id, updatedUserImage)
+
+  if (!result) {
+    return null
+  }
+  */
+
+  return JSON.stringify(getPresignedPostS3(id, profilePic))
 }
 
 const removeProfilePic = async (id) => {
