@@ -53,8 +53,7 @@ const updateUserImages = (id, userImages, client = docClient) => {
 }
 
 const updateProfilePic = async (id, profilePic) => {
-  /*
-const userImages = await getUserImages(id)
+  const userImages = await getUserImages(id)
 
   const updatedUserImage = { ...userImages, profilePic }
 
@@ -63,7 +62,8 @@ const userImages = await getUserImages(id)
   if (!result) {
     return null
   }
-  */
+
+  await deleteFromS3(id, userImages.profilePic)
 
   return JSON.stringify(getPresignedPostS3(id, profilePic))
 }
