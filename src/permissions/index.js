@@ -10,7 +10,7 @@ const isReadingOwnAccount = rule()((_parent, { id }, { currentUser }) => {
 
 const permissions = shield({
   Query: {
-    getUserImages: and(isAuthenticated, isReadingOwnAccount),
+    getUserImages: and(isAuthenticated),
   },
   Mutation: {
     updateProfilePic: and(isAuthenticated, isReadingOwnAccount),
