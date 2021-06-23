@@ -4,9 +4,9 @@ const config = require('../config/aws_config')
 const s3 = new AWS.S3(config.aws_remote_config)
 const AWS_BUCKET = config.AWS_BUCKET
 
-const uploadToS3 = (id, fileName) => {
-  const fileContent = fs.readFileSync(fileName)
-  const Key = `${id}\\${fileName}`
+const uploadToS3 = (id, filename) => {
+  const fileContent = fs.readFileSync(filename)
+  const Key = `${id}/${filename}`
 
   const params = {
     Bucket: AWS_BUCKET,
@@ -22,8 +22,8 @@ const uploadToS3 = (id, fileName) => {
     })
 }
 
-const deleteFromS3 = (id, fileName) => {
-  const Key = `${id}\\${fileName}`
+const deleteFromS3 = (id, filename) => {
+  const Key = `${id}/${filename}`
   const params = {
     Bucket: AWS_BUCKET,
     Key: Key,
@@ -32,12 +32,28 @@ const deleteFromS3 = (id, fileName) => {
     .promise()
     .then(() => Key)
     .catch((err) => {
-      console.log(err)
       throw err
     })
+}
+
+const getPresignedPostS3 = (id, filename) => {
+  const Key = `${id}/${filename}`
+  const params = {
+    Bucket: AWS_BUCKET,
+    Fields: {
+      Key,
+    },
+    Expires: 300,
+    Conditions: [
+      ['content-length-range', 0, 524288],
+    ],
+  }
+
+  return s3.createPresignedPost(params)
 }
 
 module.exports = {
   uploadToS3,
   deleteFromS3,
+  getPresignedPostS3,
 }

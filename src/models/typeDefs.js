@@ -15,7 +15,7 @@ type Mutation {
   updateProfilePic(
     id: ID!
     profilePic: String!
-  ): UserImages!
+  ): String
   removeProfilePic(
     id: ID!
   ): UserImages!
@@ -26,7 +26,7 @@ type Mutation {
   addAlbumPic(
     id: ID!
     albumPic: String!
-  ): UserImages!
+  ): String
 }
 `
 
