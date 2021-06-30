@@ -5,10 +5,11 @@ FROM node:16-alpine
 WORKDIR /usr/src/app
 
 #Copy package.json and package-lock.json to workdir
-COPY package*.json ./
+COPY package.json .
+COPY yarn.lock .
 
 #Install packages specified in package.json
-RUN npm install
+RUN yarn install
 
 #Dump source code to docker image
 COPY . .
@@ -19,5 +20,5 @@ ENV PORT=8083
 #Open port 8083
 EXPOSE 8083
 
-#Start backend
-CMD ["npm", "start"]
+#Start image-api
+CMD ["yarn", "start"]
