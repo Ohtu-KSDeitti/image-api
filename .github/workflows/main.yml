@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
       - name: Run ESLint
-        run: npm run lint
-      - name: Run jest tests and create coverage report
-        run: npm run coverage
+        run: yarn run lint
+      - name:  Run jest tests and create coverage report
+        run: yarn run coverage
         working-directory: src
       - name: Data to codecov
         run: bash <(curl -s https://codecov.io/bash)
